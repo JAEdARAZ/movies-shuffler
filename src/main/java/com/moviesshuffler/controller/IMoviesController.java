@@ -1,5 +1,8 @@
 package com.moviesshuffler.controller;
 
-public interface IMoviesController {
+import com.moviesshuffler.model.Movie;
 
+public interface IMoviesController {
+    Iterable<Movie> getMovies();
+    Movie pickRandomly();
 }

@@ -27,7 +27,7 @@ public class User {
     private String name;
 
     @Column(name = "pass_selection")
-    private boolean passSelection;
+    private boolean vetoAvailable;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
