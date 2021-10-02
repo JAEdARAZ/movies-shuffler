@@ -3,6 +3,8 @@ package com.moviesshuffler.service;
 import java.util.List;
 import java.util.Random;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ public class MoviesService implements IMoviesService{
 
     @Autowired
     private MovieRepository movieRepository;
+    
+    @Autowired
+    private IUsersService usersService;
 
     @Override
     public Iterable<Movie> getAllMovies() {
@@ -34,7 +39,10 @@ public class MoviesService implements IMoviesService{
         return movies.get(new Random().nextInt(movies.size()));
     }
 
+    @Override
+    @Transactional
     public void confirmPick(Integer movieId) {
+        usersService.restartVetos();
         movieRepository.deleteById(movieId);
     }
 

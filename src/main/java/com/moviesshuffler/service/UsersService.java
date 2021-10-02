@@ -2,6 +2,7 @@ package com.moviesshuffler.service;
 
 import java.util.List;
 
+import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +31,11 @@ public class UsersService implements IUsersService{
     }
     
     @Override
-    public List<User> restartVetos(boolean withVeto) {
-        return userRepository.findByVetoAvailable(withVeto);
+    public void restartVetos() {
+        List<User> users = IterableUtils.toList(getAllUsers());
+        if (users.size() == users.stream().filter(u -> !u.isVetoAvailable()).count()) {
+            userRepository.resetAllUsersVeto();
+        }
     }
     
 }
