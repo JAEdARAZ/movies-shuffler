@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.movies-shuffler</groupId>
 	<artifactId>movie-shuffler</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>movie-shuffler</name>
 	<description>Movie Shuffler for J and K</description>
 	<properties>
