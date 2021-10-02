@@ -30,7 +30,9 @@ public class MoviesService implements IMoviesService{
 
     @Override
     public List<Movie> getMoviesByUserId(@PathVariable Integer userId) {
-        return movieRepository.findByUserId(userId);
+        List<Movie> movies = movieRepository.findByUserId(userId);
+        movies.forEach(m -> m.setUser(null));
+        return movies;
     }
 
     @Override

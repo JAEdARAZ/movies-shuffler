@@ -10,26 +10,26 @@ import com.moviesshuffler.model.User;
 import com.moviesshuffler.repository.UserRepository;
 
 @Service
-public class UsersService implements IUsersService{
+public class UsersService implements IUsersService {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Override
     public Iterable<User> getAllUsers() {
         Iterable<User> users = userRepository.findAll();
         return users;
     }
-    
+
     @Override
     public void vetoPick(Integer userId) {
         User user = userRepository.findById(userId).orElse(new User());
-        if(user.isVetoAvailable()) {
+        if (user.isVetoAvailable()) {
             user.setVetoAvailable(false);
             userRepository.save(user);
         }
     }
-    
+
     @Override
     public void restartVetos() {
         List<User> users = IterableUtils.toList(getAllUsers());
@@ -37,5 +37,5 @@ public class UsersService implements IUsersService{
             userRepository.resetAllUsersVeto();
         }
     }
-    
+
 }
