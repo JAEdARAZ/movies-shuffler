@@ -8,4 +8,5 @@ public interface IMoviesService {
     Iterable<Movie> getAllMovies();
     List<Movie> getMoviesByUserId(Integer userId);
     Movie pickRandomly();
+    void confirmPick(Integer movieId);
 }

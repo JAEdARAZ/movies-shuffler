@@ -10,19 +10,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moviesshuffler.model.Movie;
-import com.moviesshuffler.service.MoviesService;
-import com.moviesshuffler.service.UsersService;
+import com.moviesshuffler.model.User;
+import com.moviesshuffler.service.IMoviesService;
+import com.moviesshuffler.service.IUsersService;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UsersController implements IUsersController{
 
     @Autowired
-    private MoviesService moviesService;
+    private IMoviesService moviesService;
     
     @Autowired
-    private UsersService usersService;
+    private IUsersService usersService;
 
+    @GetMapping("")
+    public Iterable<User> getUsers(){
+        return usersService.getAllUsers();
+    }
+    
     @Override
     @GetMapping("{userId}/movies")
     public List<Movie> getUserMovies(@PathVariable Integer userId) {

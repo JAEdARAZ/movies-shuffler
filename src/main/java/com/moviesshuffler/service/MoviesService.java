@@ -19,7 +19,8 @@ public class MoviesService implements IMoviesService{
 
     @Override
     public Iterable<Movie> getAllMovies() {
-        return movieRepository.findAll();
+        Iterable<Movie> movies =  movieRepository.findAll();
+        return movies;
     }
 
     @Override
@@ -31,6 +32,10 @@ public class MoviesService implements IMoviesService{
     public Movie pickRandomly() {
         List<Movie> movies = IterableUtils.toList(getAllMovies());
         return movies.get(new Random().nextInt(movies.size()));
+    }
+
+    public void confirmPick(Integer movieId) {
+        movieRepository.deleteById(movieId);
     }
 
 }

@@ -1,5 +1,11 @@
 package com.moviesshuffler.service;
 
-public interface IUsersService {
+import java.util.List;
 
+import com.moviesshuffler.model.User;
+
+public interface IUsersService {
+    List<User> restartVetos(boolean withVeto);
+    void vetoPick(Integer userId);
+    Iterable<User> getAllUsers();
 }
