@@ -14,3 +14,5 @@ target/
 .sts4-cache
 
 .mvn/
+src/main/resources/application.properties
+docker-compose.yml
